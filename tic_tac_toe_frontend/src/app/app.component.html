@@ -1,3 +1,63 @@
-<div class="container">
-  <h1>{{ title }}</h1>
+<div class="page">
+  <header class="app-header">
+    <div class="brand">
+      <div class="logo">TTT</div>
+      <div>
+        <h1 class="title">Tic Tac Toe</h1>
+        <p class="subtitle">Ocean Professional</p>
+      </div>
+    </div>
+
+    <div class="scoreboard" aria-label="Scoreboard">
+      <div class="score-card x">
+        <span class="label">X</span>
+        <span class="value">{{ score().X }}</span>
+      </div>
+      <div class="score-card o">
+        <span class="label">O</span>
+        <span class="value">{{ score().O }}</span>
+      </div>
+      <div class="score-card draws">
+        <span class="label">Draws</span>
+        <span class="value">{{ score().draws }}</span>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button type="button" class="btn primary" (click)="newGame()" aria-label="Start new game">New Round</button>
+      <button type="button" class="btn ghost" (click)="resetMatch()" aria-label="Reset scores and game">Reset Match</button>
+    </div>
+  </header>
+
+  <main class="board-wrapper">
+    <div class="status" [class.win]="winner() && winner() !== 'draw'" [class.draw]="winner() === 'draw'">
+      {{ statusText() }}
+      <span class="turn-indicator" *ngIf="!winner()">
+        <span class="turn-dot" [class.x]="currentPlayer() === 'X'" [class.o]="currentPlayer() === 'O'"></span>
+        <span class="turn-player">{{ currentPlayer() }}</span>
+      </span>
+    </div>
+
+    <section class="board" role="grid" aria-label="Tic Tac Toe Board">
+      <button
+        *ngFor="let cell of board(); let idx = index"
+        role="gridcell"
+        class="cell"
+        [class.x]="cell === 'X'"
+        [class.o]="cell === 'O'"
+        [attr.aria-label]="'Cell ' + (idx + 1) + ', ' + (cell ? cell : 'empty')"
+        [disabled]="winner() !== null || cell !== null"
+        (click)="handleClick(idx)">
+        <span class="mark">{{ cell }}</span>
+      </button>
+    </section>
+
+    <div class="hint">
+      Tap any empty cell to place your mark. First to 3 in a row wins.
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <span>Made with Angular 19</span>
+  </footer>
 </div>

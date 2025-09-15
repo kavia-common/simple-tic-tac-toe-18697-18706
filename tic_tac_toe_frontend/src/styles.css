@@ -1,4 +1,4 @@
-/* Global styles for minimalistic design */
+/* Global styles for minimalistic Ocean Professional design */
 * {
   margin: 0;
   padding: 0;
@@ -7,6 +7,9 @@
 
 html, body {
   height: 100%;
-  background-color: #ffffff;
+  background-color: #f9fafb; /* Ocean Professional background */
+  color: #111827;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
